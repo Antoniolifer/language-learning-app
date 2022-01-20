@@ -1,17 +1,14 @@
 .home-container {
-    .centered {
-        text-align: center;
-    }
+    text-align: center;
+    font-family: "Didot";
 
-    #choices{
-        margin-top: 100px;
-    }
+
+    
     #choices .btn {
-        width: 30%;
+        width: 35%;
         height: 300px;
         line-height: 300px;
         margin: 24px;
-        font-family: "Didot";
         font-size: 36px;
         background-color: #F8BE54;
         display: inline-block;

@@ -1,28 +1,48 @@
-div{
-    background-color: rgb(47, 118, 99);
+
+.correct{
+    background-color: #7CBF73;
+
+}
+.incorrect{
+    background-color: #D9594C;
+
+}
+.normal{
+    background-color: antiquewhite;
+
 }
 
 .quiz-container {
     font-family: "Didot";
+    height: 36em;
     h3 {
+        margin-top: 25px;
         font-size: 36px;
     }
+    
     .centered {
         text-align: center;
     }
     .questions{
-        margin-top:75px;
 	    font-size: 32px;
+        margin: 10px;
     }
     .symbol {
-        font-size: 125px;
+        font-size: 150px;
         border: 1px solid #6D98BA;
-        width: 150px;
-        height: 150px;
+        width: 200px;
+        height: 200px;
         display: inline-block;
-        margin-top: 25px;
         background-color: antiquewhite;
         font-family: "Helvetica Neue";
+    }
+    #answer{
+        font-size: 40px;
+        width: 300px;
+        height: 50px;
+        text-align:center;
+        margin-top: 25px;
+        padding: 15px;
     }
     
 

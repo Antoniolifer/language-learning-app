@@ -14,18 +14,17 @@ import Quiz from "./Quiz/Quiz";
 import About from "./About/About";
 import NotFound from "./NotFound/NotFound";
 
+import "./page.scss";
+
 function Nav(){
-    const style = {
-        
-        margin: "5px",
-        padding: "5px",
-        color: "peru"
-    }
+    
     return (
-    <div className = "navigation">
-        <Link style = {style} to="/">Home</Link>
-        <Link style = {style} to='/quiz'>Quiz</Link>
-        <Link style = {style} to="/about">About</Link>
+    <div className = "header centered">
+        <h1>ふも</h1>
+
+        <Link className = "txtbtn"  to="/">Home</Link>
+        <Link className = "txtbtn" to='/quiz'>Quiz</Link>
+        <Link className = "txtbtn" to="/about">About</Link>
     </div>
     )
 }
@@ -34,7 +33,9 @@ export default function Page(){
 
     return (
         <BrowserRouter>
-            <div>
+            <div className="page-container">
+            <Nav/>
+
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/quiz/:topicId" element={<Quiz />} />
@@ -43,7 +44,6 @@ export default function Page(){
                 <Route path="/about" element={<About />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
-            <Nav/>
             </div>
         </BrowserRouter>
     )

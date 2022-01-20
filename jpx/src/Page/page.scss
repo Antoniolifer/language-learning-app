@@ -1,0 +1,42 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    
+}
+.centered{
+    text-align: center;
+}
+.page-container{
+    background-color: antiquewhite;
+
+}
+.header{
+	border: 1px solid black;
+	padding: 20px;
+	font-size: 20px;
+	font-weight: normal;
+	background-color: #6D98BA;
+     
+    .txtbtn{
+        font-family: "Didot";
+        padding: 5px 15px 5px 15px;
+        border-right: solid black 4px;
+        border-left: solid black 4px;
+        color: black;
+        text-align: center;
+        display: inline-block;
+        margin-right: 1em; 
+        margin-left: 1em;
+    
+    
+        &:hover{
+            color: white;
+            background-color: black;
+        }
+    }
+    h1 {
+        font-size: 100px;
+        margin-top: 0px;
+        margin-bottom: 15px;
+    }
+}

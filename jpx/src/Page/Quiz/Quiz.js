@@ -10,18 +10,38 @@ function Symbol(props){
 }
 function QuizPanel(props){
     const quiz = getQuiz(props.topicId);
-    //<p>{quiz.questions}</p>
-    //<p>{quiz.answers}</p>
+    
+    const handleKeyPress = (event) =>{
+        if(event.key === "Enter"){
+            let ans = document.getElementById("answer");
+            if(props.color !== "normal"){
+                props.setColor("normal");
+                props.upQn();
+                ans.value = "";
+            }
+            else if(ans.value === quiz.answers[props.qn]){
+                props.setColor("correct");
+            } else{
+                props.setColor("incorrect");
+            }
+            console.log(ans.value);
+        }
+    }
     return (
         <div>
             
             <div className = "centered">
-            <h3>Question #{props.qn}</h3>
+            <h3>Question #{props.qn+1}</h3>
             <p className ="questions">What is this symbol?</p>
             <Symbol  symbol = {quiz.questions[props.qn]} key = {quiz.questions[props.qn].id}/>
             </div>
             <div>
-            <input type="text" id = 'answer' name="answer"  placeholder="..." autoComplete="off"></input>
+            <input type="text" id = 'answer' 
+                name="answer"  
+                placeholder="..." 
+                autoComplete="off" 
+                onKeyPress = {handleKeyPress}
+                autoFocus></input>
             </div>
         </div>
 
@@ -30,14 +50,17 @@ function QuizPanel(props){
 export default function Quiz(){
     const { topicId } = useParams();
     const [questionNum, setQuestionNum] = useState(0);
+    const upQn = () => setQuestionNum(questionNum + 1);
+    const [color, setColor] = useState("normal");
     return (
-        <div className = "quiz-container centered">
-            <h1>This is the <b>Quiz</b> page, the topic is #{topicId}</h1>
-            <QuizPanel topicId = {topicId} qn = {questionNum}/>
-            <p>You clicked {questionNum} times</p>
-            <button onClick={() => setQuestionNum(questionNum + 1)}>
-                Click me
-            </button>
+        <div className = {"quiz-container centered " + color}>
+            <p><i>This is the <b>Quiz</b> page, the topic is #{topicId}</i></p>
+            <QuizPanel topicId = {topicId} 
+                qn = {questionNum} 
+                color = {color} 
+                setColor = {setColor}
+                upQn = {upQn}/>
+
         </div>
     )
 }
