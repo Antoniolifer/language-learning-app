@@ -5,12 +5,14 @@ import {
     Link
   } from 'react-router-dom'
   
-  import React from 'react';
+  import React, {useState} from 'react';
 
 import ReactDOM from 'react-dom';
 
 import Home from "./Home/Home";
 import Quiz from "./Quiz/Quiz";
+import Results from "./Results/Results";
+
 import About from "./About/About";
 import NotFound from "./NotFound/NotFound";
 
@@ -30,6 +32,8 @@ function Nav(){
 }
 
 export default function Page(){
+    const [userAnswers, setUserAnswers] =useState([]);
+    const appendAnswer = (a) => setUserAnswers([...userAnswers, a]);
 
     return (
         <BrowserRouter>
@@ -38,8 +42,13 @@ export default function Page(){
 
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/quiz/:topicId" element={<Quiz />} />
-                <Route path="/results" element={<About />} />
+                <Route path="/quiz/:topicId" 
+                    element={
+                        <Quiz appendAnswer = {appendAnswer}
+                        userAnswers = {userAnswers}/>
+                    } 
+                />
+                <Route path="/results" element={<Results userAnswers = {userAnswers}/>} />
 
                 <Route path="/about" element={<About />} />
                 <Route path="*" element={<NotFound />} />

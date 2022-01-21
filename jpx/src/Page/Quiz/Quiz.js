@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useParams, Navigate } from 'react-router-dom'
 import React, {useState} from 'react';
 import getQuiz from "../Getter";
 
@@ -10,13 +10,19 @@ function Symbol(props){
 }
 function QuizPanel(props){
     const quiz = getQuiz(props.topicId);
-    
+    if(props.qn === 5){
+        return(
+            <Navigate to = "/results"/>
+        )
+    }
     const handleKeyPress = (event) =>{
-        if(event.key === "Enter"){
-            let ans = document.getElementById("answer");
+        let ans = document.getElementById("answer");
+
+        if(event.key === "Enter" && ans.value !== ""){
             if(props.color !== "normal"){
                 props.setColor("normal");
                 props.upQn();
+                props.appendAnswer(ans.value);
                 ans.value = "";
             }
             else if(ans.value === quiz.answers[props.qn]){
@@ -47,11 +53,13 @@ function QuizPanel(props){
 
     )
 }
-export default function Quiz(){
+export default function Quiz(props){
     const { topicId } = useParams();
     const [questionNum, setQuestionNum] = useState(0);
     const upQn = () => setQuestionNum(questionNum + 1);
     const [color, setColor] = useState("normal");
+    
+
     return (
         <div className = {"quiz-container centered " + color}>
             <p><i>This is the <b>Quiz</b> page, the topic is #{topicId}</i></p>
@@ -59,7 +67,9 @@ export default function Quiz(){
                 qn = {questionNum} 
                 color = {color} 
                 setColor = {setColor}
-                upQn = {upQn}/>
+                upQn = {upQn}
+                appendAnswer = {props.appendAnswer}
+                userAnswers = {props.userAnswers}/>
 
         </div>
     )
