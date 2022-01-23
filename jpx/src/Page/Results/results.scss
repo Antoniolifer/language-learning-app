@@ -1,0 +1,31 @@
+
+.results-container {
+    padding: 0px;
+    margin: 0px;
+    .box {
+        min-width: 7%;
+        max-width: 20%;
+        margin: 5px;
+        border: 3px solid #6D98BA;
+        display: inline-block;
+        .symbol{
+            font-size: 60px;
+        }
+        .ans{
+            font-size: 24px;
+            font-family: "Didot";
+        }
+        .wrong{
+            text-decoration: line-through;
+        }
+    
+    }
+    
+
+    .correct{
+        background-color: #7CBF73;
+    }
+    .incorrect{
+        background-color: #D9594C;
+    }
+}

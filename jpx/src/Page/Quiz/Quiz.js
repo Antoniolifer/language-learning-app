@@ -10,9 +10,9 @@ function Symbol(props){
 }
 function QuizPanel(props){
     const quiz = getQuiz(props.topicId);
-    if(props.qn === 5){
+    if(props.qn === quiz.questions.length){
         return(
-            <Navigate to = "/results"/>
+            <Navigate to = {"/results/"+props.topicId} myCoolProp = "hemlo" />
         )
     }
     const handleKeyPress = (event) =>{

@@ -48,7 +48,12 @@ export default function Page(){
                         userAnswers = {userAnswers}/>
                     } 
                 />
-                <Route path="/results" element={<Results userAnswers = {userAnswers}/>} />
+
+                <Route path="/results/:topicId" element={
+                    <Results 
+                        userAnswers = {userAnswers}
+                    />} 
+                />
 
                 <Route path="/about" element={<About />} />
                 <Route path="*" element={<NotFound />} />
