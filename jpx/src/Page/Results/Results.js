@@ -17,10 +17,12 @@ function Box(props){
 export default function Results(props){
     const { topicId } = useParams();
     const quiz = getQuiz(topicId);
-    console.log(props.myCoolProp);
+    console.log(props.userAnswers);
+
+    const userAnswers = props.userAnswers ? props.userAnswers : quiz.answers;
     let count = 0;
     let score = 0;
-    const results = props.userAnswers.map((element) =>{
+    const results = userAnswers.map((element) =>{
         let correct = element === quiz.answers[count] ? true : false
         if(correct){
             score++;
@@ -36,10 +38,10 @@ export default function Results(props){
 
     })
     return (
-        <div >
-            <h1>This is the <b>Results</b> page</h1>
-            <h2 className = "centered">Your score is: {score}/{props.userAnswers.length}</h2>
-            <div className = "results-container centered">{results}</div>
+        <div className = " results-container centered">
+            <p><i>This is the <b>{props.userAnswers ? "results" : "revision"}</b> page, the topic is #{topicId}</i></p>
+            {props.userAnswers ? <h2>Your score is: {score}/{props.userAnswers.length}</h2> : <p></p>}
+            <div className = "centered">{results}</div>
         </div>
         
     )

@@ -18,6 +18,32 @@ const quiz = {
     }
 
 }
-export default function getQuiz(exercise){
-    return quiz[exercise];
+function randomiseQuiz(questions, answers, max){
+    let randomised_questions = [];
+    let randomised_answers = [];
+
+    while(randomised_questions.length !== max){
+		const random = Math.floor(Math.random() * questions.length);
+		if(!randomised_questions.includes(questions[random])) {
+			randomised_questions.push(questions[random]);
+			randomised_answers.push(answers[random]);
+		}
+	}
+    return {questions: randomised_questions, answers: randomised_answers};
 }
+
+
+export default function getQuiz(exercise, randomise = false){
+    if(randomise){
+        return randomiseQuiz(quiz[exercise].questions,quiz[exercise].answers, quiz[exercise].questions.length);
+    }
+    return quiz[exercise];
+
+}
+
+
+
+/*
+let randomisedQuiz = randomiseQuiz(quiz.katakana.questions,quiz.katakana.answers, 46);
+console.log(randomisedQuiz);
+*/

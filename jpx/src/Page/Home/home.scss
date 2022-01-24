@@ -1,23 +1,41 @@
 .home-container {
     text-align: center;
     font-family: "Didot";
+    height: 80vh;
 
 
     
     #choices .btn {
         width: 35%;
         height: 300px;
-        line-height: 300px;
+        /*line-height: 300px;*/
         margin: 24px;
-        font-size: 36px;
+        font-size: 32px;
         background-color: #F8BE54;
         display: inline-block;
         color: black;
         text-decoration: none;
         
-
+        /*
         &:hover{
             background-color: #F9C86C;
+        }
+        */
+    }
+    .choiceBtn{
+        background-color: cadetblue;
+        color: white;
+
+        text-decoration: none;
+        border: 3px solid #6D98BA;
+        display: inline-block;
+        padding: 30px 60px;
+        margin: 10px;
+        margin-top: 15px;
+        position: relative;
+
+        &:hover{
+            background-color: rgb(115, 192, 194);
         }
     }
 

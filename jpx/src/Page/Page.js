@@ -18,13 +18,13 @@ import NotFound from "./NotFound/NotFound";
 
 import "./page.scss";
 
-function Nav(){
+function Nav(props){
     
     return (
     <div className = "header centered">
         <h1>ふも</h1>
 
-        <Link className = "txtbtn"  to="/">Home</Link>
+        <Link className = "txtbtn"  to="/" onClick = {()=>{props.setUserAnswers([])}}>Home</Link>
         <Link className = "txtbtn" to='/quiz'>Quiz</Link>
         <Link className = "txtbtn" to="/about">About</Link>
     </div>
@@ -35,17 +35,24 @@ export default function Page(){
     const [userAnswers, setUserAnswers] =useState([]);
     const appendAnswer = (a) => setUserAnswers([...userAnswers, a]);
 
+    let [numQuestions, setNumQuestions] = useState(20);
+    const handleSliderChange = (event) =>{
+        setNumQuestions(event.target.value);
+    }
     return (
         <BrowserRouter>
             <div className="page-container">
-            <Nav/>
+            <Nav setUserAnswers = {setUserAnswers}/>
 
             <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<Home 
+                handleSliderChange ={handleSliderChange}/>} />
+
                 <Route path="/quiz/:topicId" 
                     element={
                         <Quiz appendAnswer = {appendAnswer}
-                        userAnswers = {userAnswers}/>
+                        userAnswers = {userAnswers}
+                        numQuestions = {numQuestions}/>
                     } 
                 />
 
@@ -54,10 +61,16 @@ export default function Page(){
                         userAnswers = {userAnswers}
                     />} 
                 />
+                <Route path="/revise/:topicId" element={
+                    <Results 
+                        userAnswers = {null}
+                    />} 
+                />
 
                 <Route path="/about" element={<About />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
+
             </div>
         </BrowserRouter>
     )

@@ -9,10 +9,11 @@ function Symbol(props){
     )
 }
 function QuizPanel(props){
-    const quiz = getQuiz(props.topicId);
-    if(props.qn === quiz.questions.length){
+    const quiz = getQuiz(props.topicId); //should be getQuiz(props.topicId,randomise = true);
+    if(props.qn === props.numQuestions){
+
         return(
-            <Navigate to = {"/results/"+props.topicId} myCoolProp = "hemlo" />
+            <Navigate to = {"/results/"+props.topicId}/>
         )
     }
     const handleKeyPress = (event) =>{
@@ -69,7 +70,10 @@ export default function Quiz(props){
                 setColor = {setColor}
                 upQn = {upQn}
                 appendAnswer = {props.appendAnswer}
-                userAnswers = {props.userAnswers}/>
+                userAnswers = {props.userAnswers}
+                numQuestions = {props.numQuestions}
+                setUserAnswers = {props.setUserAnswers}
+                />
 
         </div>
     )
